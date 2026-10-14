@@ -1,0 +1,20 @@
+{
+  "source_package_version": "0.1.2",
+  "repository_publication_authorized": true,
+  "license": "MIT",
+  "marketplace_submitted": false,
+  "marketplace_approved": false,
+  "submission_ready": false,
+  "target_host_e2e": "UNVERIFIED",
+  "pending": [
+    "Target-host OAuth, tool discovery and authenticated tool calls",
+    "Five positive and three negative cases in isolated reviewer accounts",
+    "Product website, support channel, privacy policy and service terms",
+    "Confirmed publisher identity, availability countries and commerce declarations",
+    "Reviewer access and a real demo recording",
+    "Backend tool-annotation audit and any required corrections",
+    "Verify exact Grok Bot DCR callback set against server configuration",
+    "Confirm Cursor approval includes intended Grok Bot directory availability",
+    "Complete publisher application and legal review when authorized"
+  ]
+}
