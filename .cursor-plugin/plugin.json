@@ -1,14 +1,14 @@
 {
-  "name": "amatch-grok-bot",
+  "name": "matchall-grok-bot",
   "version": "0.1.2",
   "description": "Publish needs and offers, inspect matches, and exchange contact details with mutual consent.",
-  "repository": "https://github.com/AgentConnect/amatch-grok-bot",
+  "repository": "https://github.com/AgentConnect/matchall-grok-bot",
   "license": "MIT",
   "keywords": [
     "matching",
     "procurement",
     "mcp",
-    "amatch"
+    "matchall"
   ],
   "logo": "assets/logo.png",
   "skills": "./skills/",

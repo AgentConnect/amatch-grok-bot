@@ -1,6 +1,6 @@
 {
   "mcpServers": {
-    "amatch": {
+    "matchall": {
       "url": "https://awiki.info/amatch/v2"
     }
   }

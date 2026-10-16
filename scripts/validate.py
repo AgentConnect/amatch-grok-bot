@@ -25,7 +25,7 @@ def validate():
     manifest_path = ROOT / ('plugin.json' if chatgpt else '.cursor-plugin/plugin.json')
     manifest = json.loads(manifest_path.read_text())
     mcp = json.loads((ROOT / 'mcp.json').read_text())
-    expected_name = 'amatch-chatgpt' if chatgpt else 'amatch-grok-bot'
+    expected_name = 'matchall-chatgpt' if chatgpt else 'matchall-grok-bot'
     assert manifest['name'] == expected_name
     assert re.fullmatch(r'\d+\.\d+\.\d+', manifest['version'])
     assert manifest['license'] == 'MIT'
@@ -57,7 +57,7 @@ def validate():
         assert manifest['skills'] == './skills/'
         assert manifest['mcpServers'] == './mcp.json'
         icons = [(manifest['logo'], 256)]
-    assert mcp['mcpServers'] == {'amatch': expected_server}
+    assert mcp['mcpServers'] == {'matchall': expected_server}
     assert set(mcp) == ({'$schema', 'mcpServers'} if chatgpt else {'mcpServers'})
     for name, minimum in icons:
         rel = PurePosixPath(name)
