@@ -7,11 +7,11 @@
   "submission_ready": false,
   "target_host_e2e": "UNVERIFIED",
   "pending": [
-    "Publisher first name, last name, work email, organization name and handle",
-    "Grok Bot installation, OAuth, tool discovery and authenticated tool execution on the current Matchall endpoint",
-    "Execute five positive and three negative cases with dedicated private demo fixtures; record actual outcomes",
-    "Reconcile the repository default branch with the reviewed Matchall preparation in PR #1",
-    "Owner review and acceptance of Publisher Terms at the authorized submission step"
+    "First Name、Last Name、工作邮箱、组织名称、组织 handle",
+    "当前 Matchall 服务在 Grok Bot 内的授权和功能验收",
+    "审核后的源码合入默认分支",
+    "发布者审阅并接受 Publisher Terms",
+    "正式提交审核（尚未操作）"
   ],
   "checked_date": "2026-10-17",
   "target_marketplace": "Grok Bot",
@@ -24,5 +24,18 @@
     "Dedicated reviewer access and an actual demo recording remain unverified; they are not shown as required fields on the inspected Grok form",
     "Private support channel, service policy URLs, availability and commerce declarations need owner review if requested by the reviewer",
     "Live backend tool-annotation audit awaits authenticated discovery; no server changes or deployment performed"
+  ],
+  "checklist": "submission-checklist.json",
+  "prepared_materials": [
+    "公开源码仓库与 MIT 许可证",
+    "Logo 与图标素材",
+    "名称、简介及示例提示词",
+    "官网地址已核实并写入配置",
+    "当前 Matchall MCP 地址及 OAuth 发现信息",
+    "私密匹配、公开预览与双方联系授权规则",
+    "5 个正例、3 个反例已编写（不代表已执行）",
+    "Grok 官方表单的英文简介、测试说明和字段草稿",
+    "准备包与本地校验",
+    "源码 PR 已建立（该提交 CI 另行核对）"
   ]
 }

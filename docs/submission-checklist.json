@@ -1,0 +1,97 @@
+{
+  "checked_date": "2026-10-17",
+  "target": "Grok Bot",
+  "submission_ready": false,
+  "items": [
+    {
+      "id": "public_source",
+      "done": true,
+      "label": "公开源码仓库与 MIT 许可证"
+    },
+    {
+      "id": "logo",
+      "done": true,
+      "label": "Logo 与图标素材"
+    },
+    {
+      "id": "listing",
+      "done": true,
+      "label": "名称、简介及示例提示词"
+    },
+    {
+      "id": "homepage",
+      "done": true,
+      "label": "官网地址已核实并写入配置"
+    },
+    {
+      "id": "mcp",
+      "done": true,
+      "label": "当前 Matchall MCP 地址及 OAuth 发现信息"
+    },
+    {
+      "id": "consent_skill",
+      "done": true,
+      "label": "私密匹配、公开预览与双方联系授权规则"
+    },
+    {
+      "id": "case_design",
+      "done": true,
+      "label": "5 个正例、3 个反例已编写（不代表已执行）"
+    },
+    {
+      "id": "form",
+      "done": true,
+      "label": "Grok 官方表单的英文简介、测试说明和字段草稿"
+    },
+    {
+      "id": "package",
+      "done": true,
+      "label": "准备包与本地校验",
+      "owner": "agent",
+      "reason": "本地结构、配置、素材及 ZIP 内容检查通过"
+    },
+    {
+      "id": "source_ci",
+      "done": true,
+      "label": "源码 PR 已建立（该提交 CI 另行核对）",
+      "owner": "agent",
+      "reason": "既有 PR #1；本轮将推送补全材料"
+    },
+    {
+      "id": "publisher",
+      "done": false,
+      "label": "First Name、Last Name、工作邮箱、组织名称、组织 handle",
+      "owner": "publisher"
+    },
+    {
+      "id": "host_e2e",
+      "done": false,
+      "label": "当前 Matchall 服务在 Grok Bot 内的授权和功能验收",
+      "owner": "publisher_and_agent",
+      "reason": "此前旧 awiki.info 连接显示 Needs auth、0 tools"
+    },
+    {
+      "id": "main",
+      "done": false,
+      "label": "审核后的源码合入默认分支",
+      "owner": "source_review",
+      "reason": "PR #1 仍未合并"
+    },
+    {
+      "id": "terms",
+      "done": false,
+      "label": "发布者审阅并接受 Publisher Terms",
+      "owner": "publisher"
+    },
+    {
+      "id": "submit",
+      "done": false,
+      "label": "正式提交审核（尚未操作）",
+      "owner": "publisher"
+    }
+  ],
+  "notes": [
+    "当前已核实表单没有 ZIP、录像链接、国家列表或四个独立政策链接字段，不将其列为 Grok 已确认必填项。",
+    "5 正例/3 反例是准备的验收集，不是已核实的 Grok 官方数量要求。"
+  ]
+}
