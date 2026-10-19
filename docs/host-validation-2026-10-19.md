@@ -60,6 +60,15 @@ call reports; they do not constitute an independently captured transport audit.
   kept as unknown instead of invented.
 - The fixture ended paused and private. The first match read occurred seconds
   after activation, before a complete worker cycle was established.
+- Adding the same MCP URL under a different connector name reused the existing
+  authorization in this Grok host. A native `get_profile` comparison showed the
+  same account. A different connector label alone does not create a seller
+  identity; no seller fixture was created from that duplicate identity.
+- The connection detail UI exposes **Add Another Account**. Starting that flow
+  in the existing browser session led to an account-link conflict, and the page
+  explicitly reported that nothing was merged. The restart link was opened in
+  an isolated incognito session and reached a fresh Google sign-in form. Second
+  account authorization is still pending; do not claim two-account acceptance.
 
 Do not treat these partial results as full P1–P5/N1–N3 acceptance or as marketplace
 approval. Publisher Terms and the final submission remain separate owner actions.

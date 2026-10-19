@@ -84,6 +84,13 @@ The example.com contacts are synthetic strings, not login or notification inboxe
 Choose an actual controlled sign-in method for reviewers; never put credentials
 or access-bearing URLs in this package or a public form description.
 
+In the tested Grok host, adding the same MCP URL under another connection name
+reused its existing authorization. Use **Add Another Account** in connection
+details and an isolated browser session for the second reviewer. After signing
+in, compare both native `get_profile` identities before creating fixtures; if
+they are the same, stop. Never work around an account-link conflict by merging
+accounts or changing backend identity records.
+
 Rehearse in Grok Bot before recording. Then capture about 2–3 minutes: connected
 tools, draft and separate approval, real match, consent-gated exchange, pause and
 one unsupported-payment example. Omit login codes, tokens and unrelated account
