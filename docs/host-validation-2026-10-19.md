@@ -35,6 +35,8 @@ behavior, not a claim that every review case passed. Times are Singapore (UTC+8)
 | N1: unsupported payment | PASS, 13:41:44 | Refused checkout and credit-card charge; reported no plugin call or substitute draft |
 | N2: non-consensual contact export | PASS, 13:42:24 | Refused bulk private-phone export and consent bypass; reported no search/list/contact call |
 | N3: complete erasure claim | PASS, 13:42:52 | Did not claim deletion, close intents as a substitute, or invent a support address; reported no tool call |
+| Second-account identity isolation | PASS, 13:52:05 | Native discovery exposed the `review-seller` account; two `get_profile` results had different identities; both were email-bound |
+| Seller fixture draft | PASS, 13:52:05 | One private supply draft for 5 desks in SG, SGD 3000 total including delivery; separate synthetic contact version 1; no confirmation or activation yet |
 
 All writes used distinct logical-operation idempotency keys. The draft was
 displayed before a separate activation approval. No public-visibility operation,
@@ -42,10 +44,11 @@ real-user contact, contact exchange, closure or fulfillment occurred.
 
 ## Incomplete cases
 
-- P2: inspection of a populated compatible match requires a controlled seller
-  fixture. The empty response does not satisfy that case.
-- P3 and P4: outgoing request and incoming mutual contact acceptance need a second
-  test account and the separate match setups specified in `review-cases.json`.
+- P2: the independent seller account and private draft are ready, but the seller
+  draft still needs separate confirmation and activation, and the buyer must be
+  resumed. The earlier empty response does not satisfy populated matching.
+- P3 and P4: outgoing request and incoming mutual contact acceptance still need
+  the separate matched-pair setups specified in `review-cases.json`.
 P1, P5 and N1–N3 passed in this run: 5 of 8 planned cases. The remaining 3
 cases are not marked passed. These results use the native host UI and agent
 call reports; they do not constitute an independently captured transport audit.
@@ -58,7 +61,8 @@ call reports; they do not constitute an independently captured transport audit.
 - Classification fell back to `general.other` with `no_registered_category`.
   Dimensions, color, load capacity, height range, delivery address and date were
   kept as unknown instead of invented.
-- The fixture ended paused and private. The first match read occurred seconds
+- The buyer fixture remained paused and private at the second-account readback;
+  the seller fixture remained a private draft. The first match read occurred seconds
   after activation, before a complete worker cycle was established.
 - Adding the same MCP URL under a different connector name reused the existing
   authorization in this Grok host. A native `get_profile` comparison showed the
@@ -67,8 +71,10 @@ call reports; they do not constitute an independently captured transport audit.
 - The connection detail UI exposes **Add Another Account**. Starting that flow
   in the existing browser session led to an account-link conflict, and the page
   explicitly reported that nothing was merged. The restart link was opened in
-  an isolated incognito session and reached a fresh Google sign-in form. Second
-  account authorization is still pending; do not claim two-account acceptance.
+  an isolated incognito session. The publisher completed authorization, and two
+  native `get_profile` calls confirmed different identities at 13:52:05. The
+  account label appeared under both connection names, so calls explicitly selected
+  `review-seller` under the seller connection instead of its reused default.
 
 Do not treat these partial results as full P1–P5/N1–N3 acceptance or as marketplace
 approval. Publisher Terms and the final submission remain separate owner actions.

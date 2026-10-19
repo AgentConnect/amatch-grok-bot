@@ -105,8 +105,10 @@ PR #1 is merged and the publisher has supplied the form's identity fields. A
 separate Matchall development connection was added through Grok Bot's native
 custom MCP flow on 2026-10-19. OAuth, discovery of 25 tools, native `get_profile`,
 private draft creation, separate confirmation and activation, empty-match listing
-and pause passed. Populated matching and bilateral contact exchange still require
-controlled seller fixtures. The existing legacy connector was preserved.
+and pause passed. A separately authorized seller identity was verified and a
+private supply draft created. Populated matching and bilateral contact exchange
+remain unexecuted; the buyer is paused and the seller remains a draft. The
+existing legacy connector was preserved.
 
 No form has been submitted, Publisher Terms accepted, or package release created.
 Complete target-host acceptance before attesting to in-app testing. Submission
