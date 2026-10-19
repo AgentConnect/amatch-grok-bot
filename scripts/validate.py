@@ -75,7 +75,12 @@ def validate():
     assert all(s in skill for s in ('contact_details', 'email_bound',
                                    'expected_row_version', 'mutual approval'))
     cases = json.loads((ROOT / 'docs/review-cases.json').read_text())
-    assert cases['execution_status'] == 'NOT_RUN_IN_TARGET_HOST'
+    assert cases['execution_status'] in {'NOT_RUN_IN_TARGET_HOST',
+                                        'PARTIAL_TARGET_HOST'}
+    if cases['execution_status'] == 'PARTIAL_TARGET_HOST':
+        report = PurePosixPath(cases['execution_report'])
+        assert not report.is_absolute() and '..' not in report.parts
+        assert (ROOT / 'docs' / report).is_file()
     cases = cases['test_cases']
     assert len(cases['positive']) == 5 and len(cases['negative']) == 3
     for case in cases['positive']:
@@ -107,7 +112,7 @@ def validate():
         if path.suffix != '.png':
             assert not suspicious.search(path.read_text()), f'Sensitive pattern: {path.relative_to(ROOT)}'
         count += 1
-    print(f'PASS: {expected_name}: {count} source files; manifest, MCP, assets, skill, review inventory and credential-pattern checks. Host E2E: UNVERIFIED.')
+    print(f'PASS: {expected_name}: {count} source files; manifest, MCP, assets, skill, review inventory and credential-pattern checks. Host E2E: {status["target_host_e2e"]}.')
     return manifest
 
 

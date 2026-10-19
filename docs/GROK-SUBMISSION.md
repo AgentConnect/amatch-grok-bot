@@ -1,6 +1,6 @@
 # Matchall · Grok Bot submission preparation
 
-Date: 2026-10-17. **Not ready to attest to in-app testing; not submitted.**
+Date: 2026-10-19. **Partial host acceptance; not submitted.**
 Source version stays 0.1.2; this is an unpublished preparation.
 
 ## Copy-ready form values
@@ -10,16 +10,17 @@ Use https://x.ai/bot/marketplace/submit-a-plugin. Exact field values are in
 
 | Field | Prepared value |
 | --- | --- |
-| First Name / Last Name | Publisher to supply |
-| Work Email | Publisher to supply; do not infer from an app login |
-| Organization Name / Handle | Publisher to supply; handle lowercase, no spaces |
+| First Name / Last Name | Supplied by the publisher in the form; not reproduced here |
+| Work Email | Supplied by the publisher in the form; not reproduced here |
+| Organization Name / Handle | Supplied by the publisher in the form |
 | Website URL | https://matchall.net |
 | Logotype URL | https://raw.githubusercontent.com/AgentConnect/matchall-grok-bot/62128fadedbce63aaa0b45184e3d889d28c3bed3/assets/logo.png |
 | Where to be listed | Grok Bot |
 | MCP Server URL or Public GitHub Repository | https://github.com/AgentConnect/matchall-grok-bot |
 
-The repository includes the consent skill as well as MCP configuration. Reconcile
-main with the reviewed Matchall changes before submitting the repository root.
+The repository includes the consent skill as well as MCP configuration. PR #1
+merged into main on 2026-10-19 at `b80dea044c6ee0764745ae20db81954585a2f668`;
+its tree matches reviewed source `cd86c18c1acb2079c316a681752d029492052022`.
 The direct MCP endpoint is https://matchall.net/amatch/v2 if the reviewer asks.
 
 **Brief Description**
@@ -51,9 +52,10 @@ Run [five positive and three negative cases](review-cases.json):
    fulfilled. Decline payment, non-consensual contact export and unsupported
    complete-account-erasure requests without fabricating successful actions.
 
-Record actual tools, arguments, results and pass/fail/blocked status. No case is
-claimed as passed in Grok Bot. A validator or anonymous HTTP probe does not satisfy
-the form's application-testing declaration. Exact setup details are in the cases.
+Record actual tools, arguments, results and pass/fail/blocked status. See
+[the dated host report](host-validation-2026-10-19.md) for executed checks and
+remaining cases. A validator or anonymous HTTP probe does not satisfy the form's
+application-testing declaration. Exact setup details are in the cases.
 
 ## Development connection prompt
 
@@ -92,7 +94,13 @@ setup. No demo-URL field is present on the inspected form; retain it for follow-
 
 ## Publication boundary
 
-No form submitted, legal declaration accepted, release created, default branch
-merged, service deployed or existing Grok connector replaced by this preparation.
-The publisher must resolve identity fields and complete target-host acceptance
-before submission. Submission for review and later publication are separate.
+PR #1 is merged and the publisher has supplied the form's identity fields. A
+separate Matchall development connection was added through Grok Bot's native
+custom MCP flow on 2026-10-19. OAuth, discovery of 25 tools, native `get_profile`,
+private draft creation, separate confirmation and activation, empty-match listing
+and pause passed. Populated matching and bilateral contact exchange still require
+controlled seller fixtures. The existing legacy connector was preserved.
+
+No form has been submitted, Publisher Terms accepted, or package release created.
+Complete target-host acceptance before attesting to in-app testing. Submission
+for review and later publication are separate.

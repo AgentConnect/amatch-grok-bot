@@ -1,8 +1,10 @@
 # Matchall for Grok Bot / Cursor
 
 Public source preparation targeting the Grok Bot marketplace.
-**Not listed or approved. Grok Bot installation, OAuth and tool execution remain
-unverified.** The repository name describes the intended host, not certification.
+**Not listed or approved. A native Grok Bot development connection, OAuth and
+selected tool flows passed; full host acceptance remains incomplete.** See the
+[2026-10-19 report](docs/host-validation-2026-10-19.md). The repository name
+describes the intended host, not certification.
 
 ## Package and installation path
 

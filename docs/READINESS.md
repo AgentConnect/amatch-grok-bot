@@ -1,8 +1,9 @@
 # Grok Bot submission readiness
 
-Checked 2026-10-17. **Preparation only; not submitted, listed or approved.**
+Checked 2026-10-19. **Preparation only; not submitted, listed or approved.**
 Use [the form draft](grok-submission.json), [submission guide](GROK-SUBMISSION.md),
-[status](readiness.json) and [review cases](review-cases.json).
+[status](readiness.json), [review cases](review-cases.json), and the
+[dated host validation report](host-validation-2026-10-19.md).
 
 ## Confirmed
 
@@ -17,19 +18,24 @@ Use [the form draft](grok-submission.json), [submission guide](GROK-SUBMISSION.m
   local asset. No new logo, release or hosted policy was published.
 - The official Grok form accepts a public repository or MCP URL, with separate
   options for Grok Bot, Cursor and Grok (coming soon).
+- PR #1 merged into main at `b80dea044c6ee0764745ae20db81954585a2f668`.
+  Its tree matches the reviewed source revision `cd86c18`, whose CI passed.
+- Publisher identity fields have been supplied directly in the form. Their values
+  are not copied into this public repository.
+- A separate Matchall connection was added through Grok Bot's native custom MCP
+  flow. OAuth, discovery of 25 tools and native `get_profile` succeeded.
+- Private draft creation, separate approval then confirmation/activation, an
+  empty `list_matches` response and pause passed. The synthetic intent ended
+  paused and private; this is partial acceptance, not proof of all review cases.
 
 ## Required before submitting this preparation
 
-1. Supply publisher first/last name, work email, organization name and lowercase
-   organization handle. Do not infer a legal publisher from GitHub.
-2. Finish Grok Bot installation, authorization and application tests for the
-   current Matchall endpoint. The observed legacy aMatch connection uses awiki.info,
-   needs authentication and reports zero tools. It is a separate instance.
-3. Run the prepared cases with private synthetic fixtures in dedicated accounts.
-   Keep the local-and-in-app testing declaration unchecked until supported.
-4. Reconcile the reviewed source with the repository default branch: PR #1 carries
-   the Matchall changes while main still contains the old aMatch package.
-5. At an authorized submission step, the publisher reviews and accepts the
+1. Finish the remaining application tests for the current Matchall endpoint.
+   Use a separate controlled seller account for populated matches and mutual
+   contact exchange. The preserved legacy aMatch connection is a separate instance.
+2. Consult the dated report before asserting case completion. Keep the
+   local-and-in-app testing declaration unchecked until acceptance is supported.
+3. At an authorized submission step, the publisher reviews and accepts the
    Publisher Terms. Preparing code/materials does not submit the form.
 
 ## Additional preparation, not verified form fields

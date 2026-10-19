@@ -1,5 +1,5 @@
 {
-  "checked_date": "2026-10-17",
+  "checked_date": "2026-10-19",
   "target": "Grok Bot",
   "submission_ready": false,
   "items": [
@@ -53,29 +53,30 @@
     {
       "id": "source_ci",
       "done": true,
-      "label": "源码 PR 已建立（该提交 CI 另行核对）",
+      "label": "已审核源码的 CI 通过",
       "owner": "agent",
-      "reason": "既有 PR #1；本轮将推送补全材料"
+      "reason": "PR #1 的 cd86c18 检查通过，已于 2026-10-19 合入 main"
     },
     {
       "id": "publisher",
-      "done": false,
+      "done": true,
       "label": "First Name、Last Name、工作邮箱、组织名称、组织 handle",
-      "owner": "publisher"
+      "owner": "publisher",
+      "reason": "发布者已在正式表单填写；个人资料不复制到公开仓库"
     },
     {
       "id": "host_e2e",
       "done": false,
       "label": "当前 Matchall 服务在 Grok Bot 内的授权和功能验收",
       "owner": "publisher_and_agent",
-      "reason": "此前旧 awiki.info 连接显示 Needs auth、0 tools"
+      "reason": "Grok 原生 OAuth、25 个工具发现、get_profile、私密草稿、独立确认激活、空匹配列表和暂停通过；有匹配结果及双账号联系交换仍待验证"
     },
     {
       "id": "main",
-      "done": false,
+      "done": true,
       "label": "审核后的源码合入默认分支",
       "owner": "source_review",
-      "reason": "PR #1 仍未合并"
+      "reason": "PR #1 已合并，main 为 b80dea044c6ee0764745ae20db81954585a2f668"
     },
     {
       "id": "terms",
