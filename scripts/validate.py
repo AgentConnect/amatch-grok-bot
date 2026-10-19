@@ -12,10 +12,12 @@ IGNORED = {'.git', '.venv', '__pycache__', 'dist'}
 
 
 def package_files():
-    paths = [ROOT / name for name in ('README.md', 'LICENSE', 'mcp.json')]
+    paths = [ROOT / name for name in ('README.md', 'LICENSE', 'mcp.json',
+                                     'requirements-dev.txt', 'scripts/validate.py',
+                                     'scripts/package.py')]
     paths.append(ROOT / ('plugin.json' if (ROOT / 'plugin.json').exists()
                          else '.cursor-plugin/plugin.json'))
-    for directory in ('assets', 'skills'):
+    for directory in ('assets', 'skills', 'docs'):
         paths.extend(p for p in (ROOT / directory).rglob('*') if p.is_file())
     return sorted(paths)
 
@@ -25,14 +27,14 @@ def validate():
     manifest_path = ROOT / ('plugin.json' if chatgpt else '.cursor-plugin/plugin.json')
     manifest = json.loads(manifest_path.read_text())
     mcp = json.loads((ROOT / 'mcp.json').read_text())
-    expected_name = 'amatch-chatgpt' if chatgpt else 'amatch-grok-bot'
+    expected_name = 'matchall-chatgpt' if chatgpt else 'matchall-grok-bot'
     assert manifest['name'] == expected_name
     assert re.fullmatch(r'\d+\.\d+\.\d+', manifest['version'])
     assert manifest['license'] == 'MIT'
     assert manifest['repository'] == f'https://github.com/AgentConnect/{expected_name}'
     assert not any(k in manifest for k in ('apps', 'hooks'))
     assert (ROOT / 'LICENSE').read_text().startswith('MIT License\n')
-    expected_server = {'url': 'https://awiki.info/amatch/v2'}
+    expected_server = {'url': 'https://matchall.net/amatch/v2'}
     if chatgpt:
         expected_server['type'] = 'streamable-http'
         for kind, value in (('plugin', manifest), ('mcp', mcp)):
@@ -53,11 +55,13 @@ def validate():
         icons = [(interface['logo'], 256), (interface['composerIcon'], 48)]
     else:
         assert set(manifest) == {'name', 'version', 'description', 'repository',
-                                'license', 'keywords', 'logo', 'skills', 'mcpServers'}
+                                'license', 'keywords', 'logo', 'skills', 'mcpServers',
+                                'homepage'}
+        assert manifest['homepage'] == 'https://matchall.net'
         assert manifest['skills'] == './skills/'
         assert manifest['mcpServers'] == './mcp.json'
         icons = [(manifest['logo'], 256)]
-    assert mcp['mcpServers'] == {'amatch': expected_server}
+    assert mcp['mcpServers'] == {'matchall': expected_server}
     assert set(mcp) == ({'$schema', 'mcpServers'} if chatgpt else {'mcpServers'})
     for name, minimum in icons:
         rel = PurePosixPath(name)

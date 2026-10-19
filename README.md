@@ -1,6 +1,6 @@
-# aMatch for Grok Bot / Cursor
+# Matchall for Grok Bot / Cursor
 
-Public source preparation targeting Cursor Marketplace and Grok Bot.
+Public source preparation targeting the Grok Bot marketplace.
 **Not listed or approved. Grok Bot installation, OAuth and tool execution remain
 unverified.** The repository name describes the intended host, not certification.
 
@@ -11,26 +11,33 @@ root `mcp.json`, and `skills/match-service/SKILL.md`. It contains no ChatGPT-onl
 listing extensions. The remote MCP URL is inferred as HTTP by Cursor.
 
 For Cursor editor development, clone this repository to an unused directory under
-`~/.cursor/plugins/local/amatch-grok-bot`, reload the window, and inspect Customize.
-Use the host's OAuth UI to connect aMatch. Team policy may restrict local plugins.
+`~/.cursor/plugins/local/matchall-grok-bot`, reload the window, and inspect Customize.
+Use the host's OAuth UI to connect Matchall. Team policy may restrict local plugins.
 Do not overwrite an existing installation. This is an editor development path,
 not proof that a Grok Bot cloud connector has been installed.
 
-For Grok Bot, use **Connect apps** and its OAuth flow when this connector is made
-available. The documented marketplace publishing route accepts a public GitHub
-repository at https://cursor.com/marketplace/publish. Approval and availability in
-Grok Bot must be confirmed separately; publication is not automatic from GitHub.
+The official submission form is
+https://x.ai/bot/marketplace/submit-a-plugin. It accepts a public GitHub repository
+or MCP endpoint and lets the publisher select **Grok Bot**, Cursor, or Grok
+(currently marked coming soon). This preparation targets Grok Bot only.
+The form requires both local and in-app testing; package validation alone does
+not meet that declaration. See [submission materials](docs/GROK-SUBMISSION.md).
 
-## What aMatch does
+In Grok Bot, **Connect apps** manages installed plugins. Use the host's supported
+custom connector flow for development if available, and OAuth to authorize the
+current Matchall endpoint. A Cursor editor local install does not install a Grok
+Bot cloud connector. Do not claim installation or publication until verified.
+
+## What Matchall does
 
 Draft needs and offers in natural language, activate them after approval, inspect
 matches, and exchange private contact details only with mutual consent. Pause or
 close needs when appropriate. Match scores do not guarantee transactions;
-aMatch does not place orders or process payments.
+Matchall does not place orders or process payments.
 
 ## Authorization and data
 
-The remote MCP endpoint is `https://awiki.info/amatch/v2`.
+The remote MCP endpoint is `https://matchall.net/amatch/v2`.
 Use the host's OAuth connection UI. Discovery advertises PKCE S256, dynamic
 client registration, and `intent:read` / `intent:write` scopes. Never put tokens,
 passwords, verification codes, or private contact details in this repository.
@@ -40,8 +47,12 @@ Email binding is optional and helps with account recovery and notifications.
 Private contact details are entered separately from business text and login
 email. Without email, use manual checks or a host-supported scheduled task.
 A schedule is not created merely by installing this plugin.
-Business text is processed by the hosted aMatch service and its configured
+Business text is processed by the hosted Matchall service and its configured
 model providers. This repository is the client plugin package, not the backend.
+Intents are private by default. Activating matching does not opt into the public
+feed. Making a summary browsable by other authenticated users requires separate
+approval of the current public preview; private contacts still require mutual
+contact-exchange consent.
 
 ## Example prompts
 
@@ -71,8 +82,23 @@ See [readiness](docs/READINESS.md) for the remaining marketplace work.
 
 Use this repository's Issues for public package bugs. Never post credentials,
 private contact details, or account recovery information in issues. A dedicated
-private service-support channel and service policies are still being prepared.
+private service-support channel and service policy URLs have not been verified
+for this submission. The product homepage is https://matchall.net.
 
 [MIT](LICENSE) applies to this plugin package. It does not grant access to other
 users' data, relicense the hosted backend, or imply permission to impersonate
-AWiki, aMatch, OpenAI, Cursor, or xAI. The monochrome logo follows AWiki branding.
+AWiki, Matchall, OpenAI, Cursor, or xAI. The monochrome logo follows AWiki branding.
+
+## Matchall naming transition
+
+The plugin is now named `matchall-grok-bot` and the MCP connection label is
+`matchall`. Its source repository is now
+[AgentConnect/matchall-grok-bot](https://github.com/AgentConnect/matchall-grok-bot).
+New installations use the dedicated Matchall service at
+`https://matchall.net/amatch/v2`. The older `awiki.info` service is a separate
+instance; this change does not migrate its accounts, credentials or data. Keep
+existing host connections until the user explicitly chooses to replace them.
+The OAuth issuer currently remains `https://www.amatch.me/oauth/match`; its
+discovery document advertises authorization/token/registration endpoints on
+matchall.net. An issuer identifier alone is not the MCP connection URL.
+This source update does not publish a release or update installed host copies.
