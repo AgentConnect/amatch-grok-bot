@@ -69,7 +69,7 @@
       "done": false,
       "label": "当前 Matchall 服务在 Grok Bot 内的授权和功能验收",
       "owner": "publisher_and_agent",
-      "reason": "Grok 原生 OAuth、25 个工具发现、get_profile、私密草稿、独立确认激活、空匹配列表和暂停通过；有匹配结果及双账号联系交换仍待验证"
+      "reason": "已验证两个独立账号，P1–P3、P5、N1–N3 共 7/8 项通过；P4 双方同意后读取尚未执行，三条私密测试意向和两条 pending 请求待清理。"
     },
     {
       "id": "main",

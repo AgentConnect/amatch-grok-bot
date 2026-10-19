@@ -17,7 +17,7 @@
   "mcp_endpoint": "https://matchall.net/amatch/v2",
   "local_package_validation": "PASS_2026-10-19",
   "public_oauth_discovery": "PASS_2026-10-17",
-  "grok_ui_observation": "Native Grok Bot OAuth and discovery succeeded with 25 tools. Native get_profile, private draft, separate confirmation/activation, empty-match listing and pause passed. Unsupported payment, non-consensual contact export and complete-erasure responses also passed. Final synthetic intent is paused and private. Populated matching and bilateral contact exchange remain untested; legacy connection preserved.",
+  "grok_ui_observation": "Native OAuth and 25-tool discovery passed. Two distinct account identities verified. P1-P3, P5 and N1-N3 passed (7/8): private drafts, separate activation, two populated controlled matches, pending requests withholding contacts, pause, and unsupported-request boundaries. P4 acceptance remains unexecuted. Three synthetic intents are active/private and two exchanges pending; cleanup remains required. Legacy connection and unrelated intents preserved.",
   "additional_review_preparation": [
     "Dedicated reviewer access and an actual demo recording remain unverified; they are not shown as required fields on the inspected Grok form",
     "Private support channel, service policy URLs, availability and commerce declarations need owner review if requested by the reviewer",

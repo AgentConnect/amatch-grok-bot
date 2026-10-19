@@ -24,15 +24,17 @@ Use [the form draft](grok-submission.json), [submission guide](GROK-SUBMISSION.m
   are not copied into this public repository.
 - A separate Matchall connection was added through Grok Bot's native custom MCP
   flow. OAuth, discovery of 25 tools and native `get_profile` succeeded.
-- Private draft creation, separate approval then confirmation/activation, an
-  empty `list_matches` response and pause passed. The synthetic intent ended
-  paused and private; this is partial acceptance, not proof of all review cases.
+- Two different account identities were verified. P1–P3, P5 and N1–N3 passed:
+  private drafts, separate activation, two populated controlled matches, pending
+  exchanges withholding contacts, pause and unsupported-request boundaries. P4
+  acceptance remains unexecuted. Three private active intents and two pending
+  exchanges still need cleanup; this is partial acceptance.
 
 ## Required before submitting this preparation
 
 1. Finish the remaining application tests for the current Matchall endpoint.
-   Use a separate controlled seller account for populated matches and mutual
-   contact exchange. The preserved legacy aMatch connection is a separate instance.
+   Complete P4 acceptance and mutual-contact readback, then clean up this run's
+   synthetic intents and exchanges. The preserved legacy connector is separate.
 2. Consult the dated report before asserting case completion. Keep the
    local-and-in-app testing declaration unchecked until acceptance is supported.
 3. At an authorized submission step, the publisher reviews and accepts the

@@ -37,20 +37,27 @@ behavior, not a claim that every review case passed. Times are Singapore (UTC+8)
 | N3: complete erasure claim | PASS, 13:42:52 | Did not claim deletion, close intents as a substitute, or invent a support address; reported no tool call |
 | Second-account identity isolation | PASS, 13:52:05 | Native discovery exposed the `review-seller` account; two `get_profile` results had different identities; both were email-bound |
 | Seller fixture draft | PASS, 13:52:05 | One private supply draft for 5 desks in SG, SGD 3000 total including delivery; separate synthetic contact version 1; no confirmation or activation yet |
+| Seller activation and buyer resume | PASS, 14:16:05 | Seller separately confirmed at 14:15:22 and activated at 14:15:27; first buyer resumed at 14:15:30; both active and private |
+| Independent incoming-case buyer | PASS, 14:17:14 | Second private buyer draft inspected before separate confirmation at 14:16:39 and activation at 14:16:44; no duplicate or replacement intent |
+| P2: populated match inspection | PASS, 14:17:14 | Two distinct matches connect only the three synthetic intents; `list_matches` and `get_match` returned compatible product, quantity, SG region and price; no contacts |
+| P3: outgoing contact request | PASS, 14:18:34 | First buyer requested exchange at 14:18:04 after contact-version readback; `pending`, row version 1; both sides' reads withheld counterpart contacts |
+| P4 setup: distinct incoming request | PASS for setup only, 14:18:34 | Seller requested the second buyer at 14:18:09; buyer inbox showed `action_required=true`; `pending`, row version 1, no contacts exposed |
 
-All writes used distinct logical-operation idempotency keys. The draft was
-displayed before a separate activation approval. No public-visibility operation,
-real-user contact, contact exchange, closure or fulfillment occurred.
+Intent mutations used distinct logical-operation idempotency keys. The contact
+request schema did not expose an idempotency-key parameter; each authorized
+request was made once and read back from both sides. Drafts were displayed before
+separate activation approvals. No public-visibility operation, real-user contact,
+closure or fulfillment occurred. All contact strings were synthetic.
 
 ## Incomplete cases
 
-- P2: the independent seller account and private draft are ready, but the seller
-  draft still needs separate confirmation and activation, and the buyer must be
-  resumed. The earlier empty response does not satisfy populated matching.
-- P3 and P4: outgoing request and incoming mutual contact acceptance still need
-  the separate matched-pair setups specified in `review-cases.json`.
-P1, P5 and N1–N3 passed in this run: 5 of 8 planned cases. The remaining 3
-cases are not marked passed. These results use the native host UI and agent
+- P4: the second buyer's distinct incoming request is ready, but the separate
+  acceptance and mutual-contact readback remain unexecuted.
+- Cleanup: both buyer intents and the seller intent are currently active and
+  private. Both new exchanges are pending. Pause the three synthetic intents and
+  cancel/revoke only this run's exchanges after completing acceptance.
+P1–P3, P5 and N1–N3 passed in this run: 7 of 8 planned cases. P4 is not
+marked passed. These results use the native host UI and agent
 call reports; they do not constitute an independently captured transport audit.
 
 ## Observations
@@ -61,9 +68,14 @@ call reports; they do not constitute an independently captured transport audit.
 - Classification fell back to `general.other` with `no_registered_category`.
   Dimensions, color, load capacity, height range, delivery address and date were
   kept as unknown instead of invented.
-- The buyer fixture remained paused and private at the second-account readback;
-  the seller fixture remained a private draft. The first match read occurred seconds
-  after activation, before a complete worker cycle was established.
+- The initial empty match read occurred seconds after activation, before a
+  complete worker cycle was established. Later controlled matching succeeded:
+  first pair at 14:15:30, second pair at 14:16:44. Both reported
+  `product_verification=verified`, `match_tier=generic`, `score_bps=9055`,
+  `confidence_label=high`, the `generic_match` warning, and no unknown conditions.
+  Passed conditions were region overlap, quantity coverage, price overlap and
+  product compatibility. The agent correctly distinguished ranking score from
+  transaction probability. This synthetic case is not broad quality evaluation.
 - Adding the same MCP URL under a different connector name reused the existing
   authorization in this Grok host. A native `get_profile` comparison showed the
   same account. A different connector label alone does not create a seller
@@ -75,6 +87,8 @@ call reports; they do not constitute an independently captured transport audit.
   native `get_profile` calls confirmed different identities at 13:52:05. The
   account label appeared under both connection names, so calls explicitly selected
   `review-seller` under the seller connection instead of its reused default.
+- The inboxes also contained older exchanges. They were not expanded or changed;
+  the new outgoing and incoming cases used two explicitly selected fixture pairs.
 
 Do not treat these partial results as full P1–P5/N1–N3 acceptance or as marketplace
 approval. Publisher Terms and the final submission remain separate owner actions.
