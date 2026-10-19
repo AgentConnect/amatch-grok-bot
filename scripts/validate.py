@@ -76,8 +76,9 @@ def validate():
                                    'expected_row_version', 'mutual approval'))
     cases = json.loads((ROOT / 'docs/review-cases.json').read_text())
     assert cases['execution_status'] in {'NOT_RUN_IN_TARGET_HOST',
-                                        'PARTIAL_TARGET_HOST'}
-    if cases['execution_status'] == 'PARTIAL_TARGET_HOST':
+                                        'PARTIAL_TARGET_HOST',
+                                        'PASSED_TARGET_HOST'}
+    if cases['execution_status'] != 'NOT_RUN_IN_TARGET_HOST':
         report = PurePosixPath(cases['execution_report'])
         assert not report.is_absolute() and '..' not in report.parts
         assert (ROOT / 'docs' / report).is_file()

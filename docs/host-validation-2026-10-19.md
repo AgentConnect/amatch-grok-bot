@@ -1,7 +1,8 @@
 # Grok Bot host validation — 2026-10-19
 
-Status: **partial acceptance; not submitted**. This is observed target-host
-behavior, not a claim that every review case passed. Times are Singapore (UTC+8).
+Status: **all eight planned native-host cases passed; cleanup complete; not
+submitted**. Coverage is limited to the cases below, not every product feature or
+marketplace installation. Times are Singapore (UTC+8).
 
 ## Setup and evidence boundary
 
@@ -42,6 +43,14 @@ behavior, not a claim that every review case passed. Times are Singapore (UTC+8)
 | P2: populated match inspection | PASS, 14:17:14 | Two distinct matches connect only the three synthetic intents; `list_matches` and `get_match` returned compatible product, quantity, SG region and price; no contacts |
 | P3: outgoing contact request | PASS, 14:18:34 | First buyer requested exchange at 14:18:04 after contact-version readback; `pending`, row version 1; both sides' reads withheld counterpart contacts |
 | P4 setup: distinct incoming request | PASS for setup only, 14:18:34 | Seller requested the second buyer at 14:18:09; buyer inbox showed `action_required=true`; `pending`, row version 1, no contacts exposed |
+| P4 precondition refresh | SAFE STOP, 14:22:52 | The selected request was already `approved`, row version 2; the agent did not issue `accept` using stale version 1 or claim the planned case passed |
+| Approved contact readback | PASS for readback only, 14:22:52 | Both sides could read the correct synthetic contact versions after approval through the email confirmation entrypoint |
+| Cancel and revoke cleanup | PASS, 14:24:18 | A was cancelled with expected version 1 and became `cancelled/2`; B was revoked with expected version 2 and became `revoked/3`; both-side reads withheld contacts afterward |
+| First pause cleanup | PASS, 14:32:26 | All three synthetic intents individually read back as `paused`, `is_public=false`; native input control recovered |
+| P4 retry setup | PASS, 14:35:53 | Reviewed and explicitly changed BUYER-2 synthetic contact to `review-buyer-retry@example.com`, version 2; seller retained version 1; only this pair resumed privately; one new seller request returned `pending/1`, pinned seller 1 / buyer 2, no contacts from either side |
+| P4: native accept and mutual readback | PASS, 14:36:56 | Separate recipient authorization; refreshed pending state and versions; `respond_contact_exchange(accept, expected_row_version=1)` returned `approved/2`; both-side reads returned the correct synthetic contact text and versions |
+| Retry exchange revocation | PASS, 14:37:28 | Recipient refreshed `approved/2`, revoked with expected version 2, and both sides read `revoked/3` without contacts |
+| Final intent cleanup | PASS, 14:37:28 | Each of BUYER-1, BUYER-2 and SELLER read back as `paused`, `is_public=false`; no closure, fulfillment or unrelated changes |
 
 Intent mutations used distinct logical-operation idempotency keys. The contact
 request schema did not expose an idempotency-key parameter; each authorized
@@ -49,16 +58,24 @@ request was made once and read back from both sides. Drafts were displayed befor
 separate activation approvals. No public-visibility operation, real-user contact,
 closure or fulfillment occurred. All contact strings were synthetic.
 
-## Incomplete cases
+## Completion and remaining submission work
 
-- P4: the second buyer's distinct incoming request is ready, but the separate
-  acceptance and mutual-contact readback remain unexecuted.
-- Cleanup: both buyer intents and the seller intent are currently active and
-  private. Both new exchanges are pending. Pause the three synthetic intents and
-  cancel/revoke only this run's exchanges after completing acceptance.
-P1–P3, P5 and N1–N3 passed in this run: 7 of 8 planned cases. P4 is not
-marked passed. These results use the native host UI and agent
-call reports; they do not constitute an independently captured transport audit.
+P1–P5 and N1–N3 passed: **8 of 8 planned cases**, using the native development
+connection and source skill. The original P4 attempt remains a safe stop; it is
+not retroactively counted as an acceptance call. P4 passed on the new request
+with explicitly reviewed contact versions and a separate acceptance instruction.
+
+Final state: all three synthetic intents are paused and private. The original
+outgoing exchange is cancelled; the original incoming exchange and the retry
+exchange are revoked. All three exchanges withhold contacts on subsequent reads.
+Revocation does not retract synthetic contact strings already shown in the chat.
+No real purchase, public-feed publication, fulfillment or account erasure occurred.
+
+The submission page was observed empty again at the final check. Previously
+entered publisher values must be re-entered; no submission success was observed.
+Publisher Terms and the final submission remain owner actions. An approved
+marketplace installation, independent reviewer access and a demo video are not
+established by these tests.
 
 ## Observations
 
@@ -89,6 +106,37 @@ call reports; they do not constitute an independently captured transport audit.
   `review-seller` under the seller connection instead of its reused default.
 - The inboxes also contained older exchanges. They were not expanded or changed;
   the new outgoing and incoming cases used two explicitly selected fixture pairs.
+- Re-requesting match B used a new contact-version pair (seller 1 / buyer 2),
+  producing a new exchange. This does not demonstrate that requesting again with
+  the unchanged versions would create a new exchange.
+- Native-window input intermittently stopped responding. After control recovered,
+  pause and the final acceptance/revocation run completed without service changes.
 
-Do not treat these partial results as full P1–P5/N1–N3 acceptance or as marketplace
-approval. Publisher Terms and the final submission remain separate owner actions.
+## Supplementary approval audit
+
+A narrowly scoped production query ran in a read-only database session, outside
+the Grok host. This audit is diagnostic evidence, not another Grok acceptance
+case. It returned only fixture labels, event type, time, entrypoint category,
+actor role and row version; credentials, request IDs and account identifiers were
+not exported.
+
+| Fixture | Audit event | Singapore time | Evidence |
+| --- | --- | --- | --- |
+| A | requested | 14:18:04 | Requester action |
+| B | requested | 14:18:09 | Requester action |
+| B | approved | 14:21:59 | Recipient action through the email confirmation handler; row version 2 |
+| A | cancelled | 14:23:50 | Requester action; row version 2 |
+| B | revoked | 14:23:51 | Recipient action; row version 3 |
+| B retry | requested | 14:35:37 | Requester; authenticated entrypoint without the email-confirmation marker |
+| B retry | approved | 14:36:46 | Recipient; authenticated entrypoint without the email-confirmation marker; row version 2 |
+| B retry | revoked | 14:37:03 | Recipient; authenticated entrypoint without the email-confirmation marker; row version 3 |
+
+The original approval predates Grok's 14:22:17 acceptance prompt. Source inspection
+ties the audit's email-approval request marker to the email confirmation handler.
+The publisher subsequently confirmed personally clicking approval, explaining
+that state change. The retry audit corroborates approval and revocation from a
+different authenticated entrypoint; the native Grok UI supplies the host-call
+evidence. No database writes or service deployment were used.
+
+These results establish the planned native development-flow checks, not
+marketplace approval. Publisher Terms and final submission are separate.

@@ -1,6 +1,6 @@
 # Matchall · Grok Bot submission preparation
 
-Date: 2026-10-19. **Partial host acceptance; not submitted.**
+Date: 2026-10-19. **Eight planned native-host cases passed; not submitted.**
 Source version stays 0.1.2; this is an unpublished preparation.
 
 ## Copy-ready form values
@@ -10,9 +10,9 @@ Use https://x.ai/bot/marketplace/submit-a-plugin. Exact field values are in
 
 | Field | Prepared value |
 | --- | --- |
-| First Name / Last Name | Supplied by the publisher in the form; not reproduced here |
-| Work Email | Supplied by the publisher in the form; not reproduced here |
-| Organization Name / Handle | Supplied by the publisher in the form |
+| First Name / Last Name | Re-entry required; final form inspection found empty inputs |
+| Work Email | Re-entry required; final form inspection found empty inputs |
+| Organization Name / Handle | Publisher must re-enter; values are not reproduced here |
 | Website URL | https://matchall.net |
 | Logotype URL | https://raw.githubusercontent.com/AgentConnect/matchall-grok-bot/62128fadedbce63aaa0b45184e3d889d28c3bed3/assets/logo.png |
 | Where to be listed | Grok Bot |
@@ -54,7 +54,7 @@ Run [five positive and three negative cases](review-cases.json):
 
 Record actual tools, arguments, results and pass/fail/blocked status. See
 [the dated host report](host-validation-2026-10-19.md) for executed checks and
-remaining cases. A validator or anonymous HTTP probe does not satisfy the form's
+evidence limits. A validator or anonymous HTTP probe does not satisfy the form's
 application-testing declaration. Exact setup details are in the cases.
 
 ## Development connection prompt
@@ -96,20 +96,19 @@ tools, draft and separate approval, real match, consent-gated exchange, pause an
 one unsupported-payment example. Omit login codes, tokens and unrelated account
 data. Play back the recording to check legibility and real results. Host it at a
 reviewer-accessible destination chosen by the publisher. This is a script, not a
-recording. Recording awaits a working development connection and dedicated review
-setup. No demo-URL field is present on the inspected form; retain it for follow-up.
+recording. The development connection passed the planned checks; a clean
+reviewer setup and actual recording still need preparation. No demo-URL field is present on the inspected form; retain it for follow-up.
 
 ## Publication boundary
 
-PR #1 is merged and the publisher has supplied the form's identity fields. A
-separate Matchall development connection was added through Grok Bot's native
-custom MCP flow on 2026-10-19. OAuth, discovery of 25 tools, native `get_profile`,
-private drafts, separate activation, populated controlled matching, pending
-contact-request privacy and pause passed. Seven of eight planned cases passed;
-P4 acceptance and mutual-contact readback remain unexecuted. Three private active
-intents and two pending exchanges require cleanup. The existing legacy connector
-was preserved.
+PR #1 is merged. A separate Matchall development connection was added through
+Grok Bot's native custom MCP flow on 2026-10-19. OAuth, 25-tool discovery, two
+identities and all eight planned cases passed. P4 was completed on a fresh
+request after the publisher's earlier email approval caused a safe stop. Native
+acceptance and mutual readback succeeded, followed by revocation with no contacts
+returned. All three synthetic intents are finally paused and private.
 
-No form has been submitted, Publisher Terms accepted, or package release created.
-Complete target-host acceptance before attesting to in-app testing. Submission
-for review and later publication are separate.
+The final page inspection showed an empty form, so publisher and prepared public
+fields need re-entry. No form has been submitted, Publisher Terms accepted, or
+package release created. These are native development-connection results, not
+marketplace installation or approval. Submission and later publication are separate.

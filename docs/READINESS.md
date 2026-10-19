@@ -20,23 +20,27 @@ Use [the form draft](grok-submission.json), [submission guide](GROK-SUBMISSION.m
   options for Grok Bot, Cursor and Grok (coming soon).
 - PR #1 merged into main at `b80dea044c6ee0764745ae20db81954585a2f668`.
   Its tree matches the reviewed source revision `cd86c18`, whose CI passed.
-- Publisher identity fields have been supplied directly in the form. Their values
-  are not copied into this public repository.
+- Publisher identity fields were previously supplied directly, but the final
+  page inspection showed all inputs empty. They must be re-entered before
+  submission; personal values are not retained in this public repository.
 - A separate Matchall connection was added through Grok Bot's native custom MCP
   flow. OAuth, discovery of 25 tools and native `get_profile` succeeded.
-- Two different account identities were verified. P1–P3, P5 and N1–N3 passed:
-  private drafts, separate activation, two populated controlled matches, pending
-  exchanges withholding contacts, pause and unsupported-request boundaries. P4
-  acceptance remains unexecuted. Three private active intents and two pending
-  exchanges still need cleanup; this is partial acceptance.
+- Two different account identities were verified. P1–P5 and N1–N3 all passed:
+  private drafts, separate activation, populated controlled matches, pending
+  privacy, native acceptance with correct mutual contact readback, pause and
+  unsupported-request boundaries. All three synthetic intents finally read as
+  paused and private; cancelled/revoked exchanges withheld contacts.
+- The original P4 request was approved by the publisher through email before
+  Grok acted. Grok correctly stopped on changed state. A fresh, independently
+  authorized request then passed native acceptance.
 
 ## Required before submitting this preparation
 
-1. Finish the remaining application tests for the current Matchall endpoint.
-   Complete P4 acceptance and mutual-contact readback, then clean up this run's
-   synthetic intents and exchanges. The preserved legacy connector is separate.
-2. Consult the dated report before asserting case completion. Keep the
-   local-and-in-app testing declaration unchecked until acceptance is supported.
+1. Refill the currently empty submission form and have the publisher verify its
+   identity fields. Prepared public values are in the form draft.
+2. Consult the dated report when attesting to testing: all eight planned cases
+   passed on a native development connection with the source skill. This does
+   not establish marketplace installation or every product feature.
 3. At an authorized submission step, the publisher reviews and accepts the
    Publisher Terms. Preparing code/materials does not submit the form.
 

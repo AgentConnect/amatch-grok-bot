@@ -1,6 +1,6 @@
 {
   "evidence": "synthetic_agent_authored_not_human_gold",
-  "execution_status": "PARTIAL_TARGET_HOST",
+  "execution_status": "PASSED_TARGET_HOST",
   "test_cases": {
     "positive": [
       {
@@ -49,5 +49,6 @@
       }
     ]
   },
-  "execution_report": "host-validation-2026-10-19.md"
+  "execution_report": "host-validation-2026-10-19.md",
+  "execution_scope": "Native Grok Bot development connection and source skill; not marketplace installation. Existing authorized accounts were used; dedicated reviewer access remains unverified."
 }

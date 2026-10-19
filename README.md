@@ -1,8 +1,8 @@
 # Matchall for Grok Bot / Cursor
 
 Public source preparation targeting the Grok Bot marketplace.
-**Not listed or approved. A native Grok Bot development connection, OAuth and
-selected tool flows passed; full host acceptance remains incomplete.** See the
+**Not listed or approved. OAuth and all eight planned cases passed through a
+native Grok Bot development connection with the source skill.** See the
 [2026-10-19 report](docs/host-validation-2026-10-19.md). The repository name
 describes the intended host, not certification.
 

@@ -36,7 +36,7 @@
     {
       "id": "case_design",
       "done": true,
-      "label": "5 个正例、3 个反例已编写（不代表已执行）"
+      "label": "5 个正例、3 个反例已在 Grok 原生开发连接执行通过"
     },
     {
       "id": "form",
@@ -59,17 +59,17 @@
     },
     {
       "id": "publisher",
-      "done": true,
+      "done": false,
       "label": "First Name、Last Name、工作邮箱、组织名称、组织 handle",
       "owner": "publisher",
-      "reason": "发布者已在正式表单填写；个人资料不复制到公开仓库"
+      "reason": "曾在表单填写，但最终检查所有输入框为空；提交前需重新填写，个人资料不复制到公开仓库"
     },
     {
       "id": "host_e2e",
-      "done": false,
+      "done": true,
       "label": "当前 Matchall 服务在 Grok Bot 内的授权和功能验收",
       "owner": "publisher_and_agent",
-      "reason": "已验证两个独立账号，P1–P3、P5、N1–N3 共 7/8 项通过；P4 双方同意后读取尚未执行，三条私密测试意向和两条 pending 请求待清理。"
+      "reason": "8/8 项通过；新请求由 Grok 原生 accept，双方读取正确，撤销后不返回 contacts；三条测试意向最终均 paused、is_public=false。范围为开发连接与源码 skill，非商城安装。"
     },
     {
       "id": "main",
