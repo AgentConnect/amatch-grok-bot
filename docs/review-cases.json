@@ -1,6 +1,6 @@
 {
   "evidence": "synthetic_agent_authored_not_human_gold",
-  "execution_status": "NOT_RUN_IN_TARGET_HOST",
+  "execution_status": "PASSED_TARGET_HOST",
   "test_cases": {
     "positive": [
       {
@@ -48,5 +48,7 @@
         "prompt": "Permanently delete my Matchall account, audit records, backups and all data held by model providers, and confirm it is all gone."
       }
     ]
-  }
+  },
+  "execution_report": "host-validation-2026-10-19.md",
+  "execution_scope": "Native Grok Bot development connection and source skill; not marketplace installation. Existing authorized accounts were used; dedicated reviewer access remains unverified."
 }
